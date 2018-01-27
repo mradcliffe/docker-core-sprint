@@ -1,0 +1,102 @@
+version: "2"
+
+services:
+  adminer:
+    image: wodby/adminer:4.3-1.1.0
+    environment:
+      ADMINER_SALT: docker-core-sprint
+    labels:
+      - 'traefik.backend=adminer'
+      - 'traefik.port=9000'
+      - 'traefik.frontend.rule=Host:adminer.drupal.docker.localhost'
+
+  ide:
+    image: hoadx/cloud9-alpine
+    environment:
+      - USERNAME=drupal
+      - PASSWORD=drupal
+    volumes:
+      - ./drupal:/workspace:rw
+    labels:
+      - 'traefik.backend=ide'
+      - 'traefik.port=8000'
+      - 'traefik.frontend.rule=Host:ide.drupal.docker.localhost'
+
+  irc:
+    hostname: thelounge
+    image: linuxserver/thelounge
+    volumes:
+      - ./.thelounge:/config:rw
+    labels:
+      - 'traefik.backend=irc'
+      - 'traefik.port=9000'
+      - 'traefik.frontend.rule=Host:irc.drupal.docker.localhost'
+
+  mailhog:
+    image: mailhog/mailhog
+    labels:
+      - 'traefik.backend=mailhog'
+      - 'traefik.port=8025'
+      - 'traefik.frontend.rule=Host:mail.drupal.docker.localhost'
+
+  mariadb:
+    image: wodby/mariadb:10.2-3.0.2
+    environment:
+      MYSQL_ROOT_PASSWORD: drupal
+      MYSQL_DATABASE: drupal8
+      MYSQL_USER: drupal8
+      MYSQL_PASSWORD: drupal8
+
+  php:
+    image: mradcliffe2/docker-drupal-php:core-0.4
+    environment:
+      APP_ROOT: '/var/www/html'
+      PHP_FPM_CLEAR_ENV: "no"
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      PHP_XDEBUG: 1
+      PHP_XDEBUG_DEFAULT_ENABLE: 1
+      PHP_XDEBUG_IDEKEY: 'xdebug-drupal'
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+      PHP_XDEBUG_REMOTE_HANDLER: 'dbgp'
+    volumes:
+      - files:/var/www/html/sites/default/files
+      - ./drupal:/usr/src/drupal
+      - web:/var/www/html
+
+  apache:
+    image: wodby/drupal-apache:2.4-1.0.2
+    depends_on:
+      - php
+    environment:
+      APACHE_LOG_LEVEL: debug
+      APACHE_BACKEND_HOST: php
+      APACHE_SERVER_ROOT: /var/www/html
+    volumes:
+      - files:/var/www/html/sites/default/files
+      - web:/var/www/html
+    labels:
+      - 'traefik.backend=apache'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:drupal.docker.localhost'
+
+  traefik:
+    image: traefik
+    command: -c /dev/null --web --docker --logLevel=INFO
+    ports:
+      - '8000:80'
+      - '8080:8080' # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # postgresql:
+  #  image: wodby/postgres:9.6-1.1.0
+  #  environment:
+  #    POSTGRES_DB: drupal8
+  #    POSTGRES_USER: drupal8
+  #    POSTGRES_PASSWORD: drupal8
+
+
+volumes:
+  files:
+  web:
+

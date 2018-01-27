@@ -1,0 +1,14 @@
+# IDE files
+/.vscode/
+/.vs/
+/.idea/
+/nbproject/
+*.sublime-workspace
+*.code-workspace
+
+
+# Miscellanous files
+.DS_Store
+/env
+/drupal/vendor
+
