@@ -46,7 +46,7 @@ before_deploy:
 
 
   - cd ..
-  - zip -r -x "*.git*" -x ".travis.yml" RELEASE_FILE ${TRAVIS_BUILD_DIR}
+  - zip -x "*.git*" -x ".travis.yml" -r ${RELEASE_FILE} ${TRAVIS_BUILD_DIR}
 
 
 deploy:
