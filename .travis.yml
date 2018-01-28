@@ -39,15 +39,17 @@ before_deploy:
   - sed -i 's#\.\./\.\./\.\./drupal#..#' .git/config
   # Checkout dev branch.
   - git checkout 8.5.x
+  # Install composer libraries.
+  - composer install --no-interaction --dev
 #  - docker image save $IMAGES  | gzip > images.tar.gz
 
   # Get the tagged release.
-  - RELEASE_FILE="docker-core-sprint-${TRAVIS_BRANCH}.zip"
-
-
-  - cd ..
-  - zip -q -x "*.git*" -x ".travis.yml" -r ${RELEASE_FILE} ${TRAVIS_BUILD_DIR} || echo "Failed to create release build!"
-
+  - RELEASE_DIR="docker-core-sprint"
+  - RELEASE_FILE="/tmp/${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
+  - mkdir -p "/tmp/${RELEASE_DIR}"
+  - cd "/tmp"
+  - cp -a ${TRAVIS_BUILD_DIR}/. "${RELEASE_DIR}/"
+  - zip -q -x "*.git*" -x ".travis.yml" -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo "Failed to create release build!"
 
 deploy:
   provider: releases

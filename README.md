@@ -6,56 +6,95 @@ Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-spr
 
 ## Getting Started
 
-### 1. Requirements
+### 1. Get Files
 
-Confirm that you have installed the following dependencies:
+* ResilioSync - Find the folder/directory that was download.
+* USB Drive - Copy folder/directory from the USB drive.
 
-1. Docker
-  1. Windows
-     1. Docker:
-        * "Docker for Windows" **only** if you do **not** use VirtualBox and your computer has Hyper-V support enabled.
-        * "Docker Toolbox" if you have VirtualBox installed.
-     2. Git
-        * TortoiseGit
-        * Git Bash
-        * babun/cygwin with Git install
-  2. MacOS
-     1. [Docker Community Edition for Desktop Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
-     2. Git
-        * XCode
-        * Git for Mac
-        * Homebrew
-  3. Linux
-     * Either get docker and docker-compose packages for your distribution or compile those from source.
-     * If you do not have docker-composer, you can use the following Makefile to install it via pip automatically:
-        * `make`
-        * `. env/bin/activate`
+### 2. Install Docker and Other Requirements
 
-### 2. Download Drupal Source
+* Windows
+   * Docker:
+      * Run the "Docker for Windows" **only** if you do **not** use VirtualBox and your computer has Hyper-V support enabled.
+      * Run the "Docker Toolbox.exe" if you have VirtualBox installed.
+   * @todo git, babun
+* MacOS
+   * Open "Docker.dmg" file, and drag and drop Docker application file to Applications.
+   * Run Docker. Do not run any updates at the sprint to save bandwidth.
+* Linux
+   * Install the equivalent packages for Docker Community Edition from the following distributions:
+      * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+      * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
+      * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+   * Make sure that the docker daemon is running.
+   * Install python3.
 
-We want to download the most up-to-date source code for Drupal via Git so that we can easily edit it before running the container.
-
-1. Clone the Drupal core project from the URL `https://git.drupal.org:/project/drupal.git` into the current working directory of this repository.
-2. Make sure you checkout the current core branch that you will be working on such as 8.5.x or 8.6.x.
-
-### 3. Start the docker environment
+### 3. Install Docker Images
 
 * Windows:
-   * Docker Toolbox
-      * Run the "Docker Quickstart Terminal" and browse to this directory.
-          * Then run `docker-compose up`
+* MacOS:
+   * Open Terminal.app or other terminal application.
+   * Run `gzcat ~/Desktop/images.tar.gz | docker load`.
+* Linux:
+   * Open a terminal application.
+   * Run `gzcat path/to/images.tar.gz | docker load`.
+
+### 4. Extract docker-core-sprint directory
+
+* Windows:
 * MacOS/Linux:
-   * Browse to this directory in a terminal.
-   * Then run `docker-compose up`
+   * Open Terminal.app or other terminal application.
+   * Extract the docker-core-sprint-RELEASE.tar.gz file e.g. `tar zxf docker-core-sprint-0.0.1.tar.gz`
+   * Change directory to the file containing docker-core-sprint-RELEASE.tar.gz e.g. `cd docker-core-sprint`.
+
+### 5. Start docker containers.
+
+* Windows
+* MacOS
+   * Open Terminal.app or other terminal application.
+   * Change directory to the docker-core-sprint directory e.g. `cd ~/Desktop/docker-core-sprint`.
+   * Run `docker-compose up -d`.
+* Linux:
+   * Open terminal application.
+   * Change directory to the docker-core-sprint directory e.g. `cd path/to/docker-core-sprint`.
+   * Install docker-compose locally by running `make`.
+   * Run `. env/bin/activate`.
+   * Run `docker-compose up -d`.
+
+### 6. Add to hosts file
+
+* Windows
+   * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
+* MacOS
+   * Open Terminal.app or other terminal application.
+   * Run `sudo cat 127.0.0.1      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost >> /etc/hosts` which tells your computer to associate the host names with your local IP address.
+      * Enter your password when prompted.
+   * Run `dscacheutil -flushcache` to clear your DNS cache.
+* Linux:
+   * Open terminal application.
+   * Run `sudo cat 127.0.0.1      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost >> /etc/hosts` which tells your computer to associate the host names with your local IP address.
+      * Enter your password when prompted.
+
+### 7. Visit the following in your browser
+
+* Drupal Core development site: http://drupal.docker.localhost:8000
+* Chat: http://irc.drupal.docker.localhost:8000
+* IDE: http://ide.drupal.docker.localhost:8000
+* Mail: http://mail.drupal.docker.localhost:8000
+* Admin page: http://adminer.drupal.docker.localhost:8000
 
 ## Manage Docker
+
+### Start things
+
+* Run `docker-compose up -d`.
 
 ### Shut things down
 
 * Run `docker-compose stop` so that you do not lose your work later.
 * Run `docker-compose down` to remove everything and start from scratch.
 
-### Refresh environment
+### Deploy code changes
 
 * Run `docker-compose restart php` after you've made some changes such as adding a test.
 
