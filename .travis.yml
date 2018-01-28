@@ -42,7 +42,7 @@ before_deploy:
 #  - docker image save $IMAGES  | gzip > images.tar.gz
 
   # Get the tagged release.
-  - RELEASE_FILE="docker-core-sprint-$(git tag --points-at HEAD).zip"
+  - RELEASE_FILE="docker-core-sprint-${TRAVIS_BRANCH}.zip"
 
 
   - cd ..
