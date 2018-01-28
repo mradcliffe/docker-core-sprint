@@ -46,7 +46,7 @@ before_deploy:
 
 
   - cd ..
-  - zip -x "*.git*" -x ".travis.yml" -r ${RELEASE_FILE} ${TRAVIS_BUILD_DIR}
+  - zip -q -x "*.git*" -x ".travis.yml" -r ${RELEASE_FILE} ${TRAVIS_BUILD_DIR} || echo "Failed to create release build!"
 
 
 deploy:
