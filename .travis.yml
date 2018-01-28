@@ -4,7 +4,6 @@ language: generic
 
 env:
   - DOCKER_COMPOSE_VERSION=1.12.0
-  - DRUPAL_BRANCH=8.5.x
 #  - IMAGES=wodby/adminer wodby/drupal-apache hoadx/cloud9-alpine linuxserver/thelounge mailhog/mailhog wodby/mariadb mradcliffe2/docker-drupal-php:core-0.4 traefik
 
 services:
@@ -36,7 +35,7 @@ before_deploy:
   - rmdir drupal
   - mv drupal_tmp drupal
   - cd drupal
-  - git checkout $DRUPAL_BRANCH
+  - git checkout 8.5.x
 #  - docker image save $IMAGES  | gzip > images.tar.gz
 
   # Get the tagged release.
