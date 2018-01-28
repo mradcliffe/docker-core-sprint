@@ -35,6 +35,9 @@ before_deploy:
   - rmdir drupal
   - mv drupal_tmp drupal
   - cd drupal
+  # Change the working tree of the git repository.
+  - sed -i 's#\.\./\.\./\.\./drupal#..#' .git/config
+  # Checkout dev branch.
   - git checkout 8.5.x
 #  - docker image save $IMAGES  | gzip > images.tar.gz
 
