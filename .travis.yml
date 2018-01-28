@@ -1,0 +1,58 @@
+sudo: required
+
+language: generic
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.12.0
+  - DRUPAL_BRANCH=8.5.x
+#  - IMAGES=wodby/adminer wodby/drupal-apache hoadx/cloud9-alpine linuxserver/thelounge mailhog/mailhog wodby/mariadb mradcliffe2/docker-drupal-php:core-0.4 traefik
+
+services:
+  - docker
+
+before_install:
+  - git submodule update --init --recursive
+
+install:
+  - docker-compose up -d
+
+script:
+  - |
+    docker-compose ps -q | xargs docker inspect -f '{{ .State.ExitCode }}' | while read CODE ; do
+      if [ "$CODE" == "1" ]; then
+        echo "-1"
+      fi
+    done 
+
+after_script:
+  - docker-compose down
+
+before_deploy:
+  # Remove the git submodule
+  - mv drupal drupal_tmp
+  - git submodule deinit drupal
+  - rm drupal_tmp/.git
+  - mv .git/modules/drupal drupal_tmp/.git
+  - rmdir drupal
+  - mv drupal_tmp drupal
+  - cd drupal
+  - git checkout $DRUPAL_BRANCH
+#  - docker image save $IMAGES  | gzip > images.tar.gz
+
+  # Get the tagged release.
+  - RELEASE_FILE="docker-core-sprint-$(git tag --points-at HEAD).zip"
+
+
+  - cd ..
+  - zip -r -x "*.git*" RELEASE_FILE ${TRAVIS_BUILD_DIR}
+
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "bn2qpZqR5kt67aOwDSoJaHCN1G9lJYOE8Dy4kzG41VJmQYAaf0oGdq8AP9IxgaTDotGjsYhwLir4S1BzAWqlDWB63ZKZm0X0K56RZPwpLHevRUOz8sjZxzKa4VW2X3guBvdajOIMg3JKaa2OlWCPlzZ22VoCH3Go/XLe8bgtoDmonev6dJxSg8rPgFuFH5j636mcwgFKPBZaeDArO5dVlsW4O5Z69fwl1oLet+VOnd8Qkog2Tlle93jbF1EoQSsvjGKmPqkoscxyYNpqXLqVqQ+T/c0eN3OGieFUH2+7wDHqNszVWAdwoek0BRihrFmi+ycB5mmpx5YVjuyS6fzqCPVq9BlONjhxdJN0JBaUgSjkdrFKCwCK4zDT0WDCJEqMkp75A3FPS67EugiTbHqBjEujgtqR1Xy3JHr+w5ZUuTu5bYEMb8yidy27MZBJn6FY2wAZN1+8p/jYSjhSMYTtGGnhB3VeBUSnybZQ03+3ht+ngomzLut/hyNvy6ki4i/0W8Quan3e0F3mNsdkbsw3yGh+OpPXi8spW15EL/eK/Dd/H0EezRePaJ61w+GpTEQ+I991eKNmfiRwQttb96XeIqUhFGc2xwlOQqyDcNgTYg3moxTjUxRzPCkixQpMecCREt5s2XOzK8nuqxAVCK8W+ZHd+RR6l0+y/xLGFOzOEkg="
+  file: "${RELEASE_FILE}"
+  skip_cleanup: true
+  on:
+    tags: true
+
