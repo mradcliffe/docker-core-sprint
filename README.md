@@ -32,16 +32,19 @@ Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-spr
 ### 3. Install Docker Images
 
 * Windows:
+   * Open "Docker Quickstart Terminal".
+   * Run `gunzip -c path/to/images.tar.gz | docker load`.
 * MacOS:
    * Open Terminal.app or other terminal application.
    * Run `gzcat ~/Desktop/images.tar.gz | docker load`.
 * Linux:
    * Open a terminal application.
-   * Run `gzcat path/to/images.tar.gz | docker load`.
+   * Run `zcat path/to/images.tar.gz | docker load`.
 
 ### 4. Extract docker-core-sprint directory
 
 * Windows:
+   * Extract the docker-core-sprint-RELEASE.tar.gz file.
 * MacOS/Linux:
    * Open Terminal.app or other terminal application.
    * Extract the docker-core-sprint-RELEASE.tar.gz file e.g. `tar zxf docker-core-sprint-0.0.1.tar.gz`
@@ -50,6 +53,9 @@ Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-spr
 ### 5. Start docker containers.
 
 * Windows
+   * Run "Docker Quickstart Terminal"
+   * Change directory to the docker-core-sprint directory e.g. `cd path/to/docker-core-sprint`.
+   * Run `docker-compose up -d`.
 * MacOS
    * Open Terminal.app or other terminal application.
    * Change directory to the docker-core-sprint directory e.g. `cd ~/Desktop/docker-core-sprint`.

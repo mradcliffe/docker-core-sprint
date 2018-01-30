@@ -49,7 +49,10 @@ before_deploy:
   - mkdir -p "/tmp/${RELEASE_DIR}"
   - cd "/tmp"
   - cp -a ${TRAVIS_BUILD_DIR}/. "${RELEASE_DIR}/"
-  - zip -q -x "*.git*" -x ".travis.yml" -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo "Failed to create release build!"
+  # Removes this repository's .git/ directory and .travis.yml only.
+  - rm -rf "${RELEASE_DIR/.git"
+  - rm "${RELEASE_DIR}.travis.yml"
+  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo "Failed to create release build!"
 
 deploy:
   provider: releases
