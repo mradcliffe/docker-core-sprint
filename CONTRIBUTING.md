@@ -6,36 +6,60 @@
 
 * Drupal code base is stored as a git submodule for development only.
 
+### docker-drupal-php
+
+See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-php) (DockerHub:  [mradcliffe2/docker-drupal-php](https://dockerhub.com/mradcliffe2/docker-drupal-php)).
+
+@todo move this to a different namespace or get rid of this for something else.
+
 ## Release
 
-* Travis CI build, tag and release
-   * Remove submodule
-   * Make it a real repo
-   * Tar/Zip up the directory for release
-   * Tag
-   * Push to GitHub.
+* Travis CI build, tag and release process:
+   * @todo packages images with the release?
+   * Changes drupal project submodule into a real repository.
+   * Adds a .gitignore to drupal project for ease-of-use.
+   * Creates a tarball of the release directory.
+   * Pushes to GitHub.
 
 ## Packaging
 
-### Items
-
-* Tar/Zip of the release of this repository.
 * Docker Installers
    * MacOS: https://store.docker.com/editions/community/docker-ce-desktop-mac
    * Windows:
       * Docker CE: https://store.docker.com/editions/community/docker-ce-desktop-windows
       * Docker ToolBox: https://docs.docker.com/toolbox/overview/
    * Linux:
-      * Need instructions for Debian and RedHat based distributions as well as instructions for LFS and alternative distributions
-* Docker Images:
-   * Save images:
-      * Each image in the docker-compose.yml file needs to be saved:
-         * `docker image save --output=images.tar wodby/mariadb wodby/drupal-apache wodby/adminer linuxserver/thelounge traefik hoadx/cloud9-alpine mailhog/mailhog mradcliffe2/docker-drupal-php:core-0.4`
-         * `gzip images.tar`
+      * Need instructions for Debian and RedHat based distributions as well as instructions for more traditional and alternative Linux desktops (Linux From Scratch, Slackware, Gentoo, etc...).
+* Docker Images:  
+   * If these are not included in `docker-core-sprint-RELEASE.tar.gz` then run through the setup process in the README, and export the images:
+      * `docker image save --output=images.tar wodby/mariadb wodby/drupal-apache wodby/adminer linuxserver/thelounge traefik hoadx/cloud9-alpine mailhog/mailhog mradcliffe2/docker-drupal-php:core-0.4`.
+      * `gzip images.tar`.
+
+### Items
+
+* docker-core-sprint-RELEASE.tar.gz
+* docker-images.tar.gz
+* Windows/
+   * Docker ToolBox.exe
+   * Docker for Windows Installer.exe
+   * 7z1801-x64.exe
+   * Git-2.16.1.4-64-bit.exe
+* MacOS/
+   * Docker.dmg
+* Linux/
+   * @todo What do we include here?
+* README.pdf
+* LICENSE
+   * List licenses and instructions for obtaining source code for Docker, 7-Zip, and Git.
+
 
 ### ResilioSync
 
+@todo
 
 ### USB Drives
 
+Copy Items to Flash Drive.
+
+@todo write up instructions with nifty imaging program that we were using to mass-update flash drives so as to avoid copying MacOS system directories.
 
