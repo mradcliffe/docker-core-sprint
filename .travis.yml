@@ -6,6 +6,14 @@ env:
   - DOCKER_COMPOSE_VERSION=1.12.0
 #  - IMAGES=wodby/adminer wodby/drupal-apache hoadx/cloud9-alpine linuxserver/thelounge mailhog/mailhog wodby/mariadb mradcliffe2/docker-drupal-php:core-0.4 traefik
 
+addons:
+  hosts:
+    - drupal.docker.internal
+    - ide.drupal.docker.internal
+    - irc.drupal.docker.internal
+    - adminer.drupal.docker.internal
+    - mail.drupal.docker.internal
+
 services:
   - docker
 
@@ -22,6 +30,11 @@ script:
         echo "-1"
       fi
     done 
+  - curl --silent --fail --show-error http://drupal.docker.internal:8000 1>/dev/null | echo -e "http://drupal.docker.internal:8000 failed!"
+  - curl --silent --fail --show-error http://drupal:drupal@ide.drupal.docker.internal:8000 1>/dev/null | echo -e "http://drupal:drupal@ide.drupal.docker.internal:8000 failed!"
+  - curl --silent --fail --show-error http://irc.drupal.docker.internal:8000 1>/dev/null | echo -e "http://irc.drupal.docker.internal:8000 failed!"
+  - curl --silent --fail --show-error http://adminer.drupal.docker.internal:8000 1>/dev/null | echo -e "http://adminer.drupal.docker.internal:8000 failed!"
+  - curl --silent --fail --show-error http://mail.drupal.docker.internal:8000 1>/dev/null | echo -e "http://mail.drupal.docker.internal:8000 failed!"
 
 after_script:
   - docker-compose down

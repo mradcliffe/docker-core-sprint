@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   adminer:
@@ -8,7 +8,7 @@ services:
     labels:
       - 'traefik.backend=adminer'
       - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:adminer.drupal.docker.localhost'
+      - 'traefik.frontend.rule=Host:adminer.drupal.docker.internal'
 
   ide:
     image: hoadx/cloud9-alpine
@@ -20,7 +20,7 @@ services:
     labels:
       - 'traefik.backend=ide'
       - 'traefik.port=8000'
-      - 'traefik.frontend.rule=Host:ide.drupal.docker.localhost'
+      - 'traefik.frontend.rule=Host:ide.drupal.docker.internal'
 
   irc:
     hostname: thelounge
@@ -30,14 +30,14 @@ services:
     labels:
       - 'traefik.backend=irc'
       - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:irc.drupal.docker.localhost'
+      - 'traefik.frontend.rule=Host:irc.drupal.docker.internal'
 
   mailhog:
-    image: mailhog/mailhog
+    image: mailhog/mailhog:v1.0.0
     labels:
       - 'traefik.backend=mailhog'
       - 'traefik.port=8025'
-      - 'traefik.frontend.rule=Host:mail.drupal.docker.localhost'
+      - 'traefik.frontend.rule=Host:mail.drupal.docker.internal'
 
   mariadb:
     image: wodby/mariadb:10.2-3.0.2
@@ -78,10 +78,10 @@ services:
     labels:
       - 'traefik.backend=apache'
       - 'traefik.port=80'
-      - 'traefik.frontend.rule=Host:drupal.docker.localhost'
+      - 'traefik.frontend.rule=Host:drupal.docker.internal'
 
   traefik:
-    image: traefik:1.5.1
+    image: traefik:1.5.2
     command: -c /dev/null --web --docker --logLevel=INFO
     ports:
       - '8000:80'

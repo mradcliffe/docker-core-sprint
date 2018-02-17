@@ -113,7 +113,7 @@ You should only use this option if you do **not** use VirtualBox because you wil
 #### Windows (Docker for Windows)
 
    * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `192.168.99.100      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost`.
+   * Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
    * Save the file.
    * Open a Run command from the start menu.
    * Run `ipconfig /flushdns`.
@@ -121,7 +121,7 @@ You should only use this option if you do **not** use VirtualBox because you wil
 #### Windows (Docker ToolBox)
 
    * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `127.0.0.1      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost`.
+   * Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
    * Save the file.
    * Open a Run command from the start menu.
    * Run `ipconfig /flushdns`.
@@ -129,22 +129,22 @@ You should only use this option if you do **not** use VirtualBox because you wil
 #### MacOS
 
    * Open Terminal.app or other terminal application.
-   * Run `sudo cat 127.0.0.1      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost >> /etc/hosts` which tells your computer to associate the host names with your local IP address.
+   * Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null` which tells your computer to associate the host names with your local IP address.
       * Enter your password when prompted.
    * Run `dscacheutil -flushcache` to clear your DNS cache.
 
 #### Linux:
    * Open terminal application.
-   * Run `sudo cat 127.0.0.1      drupal.docker.localhost ide.drupal.docker.localhost irc.drupal.docker.localhost mail.drupal.docker.localhost adminer.drupal.docker.localhost >> /etc/hosts` which tells your computer to associate the host names with your local IP address.
+   * Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null` which tells your computer to associate the host names with your local IP address.
       * Enter your password when prompted.
 
 ### 7. Visit the following in your browser
 
-* Drupal Core development site: http://drupal.docker.localhost:8000
-* Chat: http://irc.drupal.docker.localhost:8000
-* IDE: http://ide.drupal.docker.localhost:8000
-* Mail: http://mail.drupal.docker.localhost:8000
-* Admin page: http://adminer.drupal.docker.localhost:8000
+* Drupal Core development site: http://drupal.docker.internal:8000
+* Chat: http://irc.drupal.docker.internal:8000
+* IDE: http://ide.drupal.docker.internal:8000
+* Mail: http://mail.drupal.docker.internal:8000
+* Admin page: http://adminer.drupal.docker.internal:8000
 
 ## Manage Docker
 
