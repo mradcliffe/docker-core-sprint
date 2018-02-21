@@ -8,8 +8,8 @@ Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-spr
 
 ### 1. Get The Files
 
-* ResilioSync - Find the folder/directory that was downloaded and copy to your Desktop.
-* USB Drive - Copy folder/directory from the USB drive to your Desktop.
+* ResilioSync - Find the folder/directory that was downloaded and copy its contents to your Desktop.
+* USB Drive - Copy docker-core-sprint-RELEASE.zip and Docker installer related to your Operating System from the USB drive to your Desktop.
 
 ### 2. Install Docker and Other Requirements
 
@@ -19,7 +19,6 @@ You should only use this option if you do **not** use VirtualBox because you wil
 
 * Run the "Docker for Windows Installer" to install Docker.
    * If your computer does not have Hyper-V support enabled, Docker will try to enable it and Windows will need to be restarted.
-* 7-zip
 * Run the "Git for Windows" 64-bit installer
 
 #### Windows (Docker ToolBox)
@@ -45,40 +44,39 @@ You should only use this option if you do **not** use VirtualBox because you wil
       * `sudo yum install https://centos7.iuscommunity.org/ius-release.rpm`.
       * `sudo yum install python36u`.
 
-### 3. Install Docker Images
-
-#### Windows (Docker for Windows)
-
-   * Extract `images.tar.gz` as `images.tar` on your Desktop.
-   * Open Powershell.
-   * Run `docker.exe load -i C:\Users\[your username]\Desktop\images.tar`.
-
-#### Windows (Docker ToolBox)
-
-   * Open "Docker Quickstart Terminal".
-   * Run `gunzip -c /c/Users/[your username]/Desktop/images.tar.gz | docker load`.
-
-#### MacOS:
-
-   * Open Terminal.app or other terminal application.
-   * Run `gzcat ~/Desktop/images.tar.gz | docker load`.
-
-#### Linux:
-
-   * Open a terminal application.
-   * Run `zcat /path/to/images.tar.gz | docker load`.
-
-### 4. Extract docker-core-sprint directory
+### 3. Extract docker-core-sprint directory
 
 #### Windows:
 
-   * Extract the docker-core-sprint-RELEASE.tar.gz file on your Desktop. It is required to be within your user directory and not anywhere else on your file system.
+   * Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory and not anywhere else on your file system.
 
 ### MacOS/Linux:
 
    * Open Terminal.app or other terminal application.
-   * Extract the docker-core-sprint-RELEASE.tar.gz file e.g. `tar zxf docker-core-sprint-0.0.1.tar.gz`
-   * Change directory to the file containing docker-core-sprint-RELEASE.tar.gz e.g. `cd docker-core-sprint`.
+   * Extract the docker-core-sprint-RELEASE.zip file to your Desktop e.g. `unzip docker-core-sprint-0.0.1.zip`.
+   * Change directory to the docker-core-sprint directory e.g. `cd docker-core-sprint`.
+
+### 4. Install Docker Images
+
+#### Windows (Docker for Windows)
+
+   * Open Powershell.
+   * Run `docker.exe load -i C:\Users\[your username]\Desktop\docker-core-sprint\images.tar`.
+
+#### Windows (Docker ToolBox)
+
+   * Open "Docker Quickstart Terminal".
+   * Run `docker load -i /c/Users/[your username]/Desktop/images.tar`.
+
+#### MacOS:
+
+   * Open Terminal.app or other terminal application.
+   * Run `docker load -i ~/Desktop/images.tar`.
+
+#### Linux:
+
+   * Open a terminal application.
+   * Run `docker load -i /path/to/images.tar`.
 
 ### 5. Start docker containers.
 
@@ -113,7 +111,7 @@ You should only use this option if you do **not** use VirtualBox because you wil
 #### Windows (Docker for Windows)
 
    * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
+   * Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
    * Save the file.
    * Open a Run command from the start menu.
    * Run `ipconfig /flushdns`.
@@ -121,7 +119,7 @@ You should only use this option if you do **not** use VirtualBox because you wil
 #### Windows (Docker ToolBox)
 
    * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
+   * Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
    * Save the file.
    * Open a Run command from the start menu.
    * Run `ipconfig /flushdns`.
@@ -160,6 +158,4 @@ You should only use this option if you do **not** use VirtualBox because you wil
 ### Deploy code changes
 
 * Run `docker-compose restart php` after you've made some changes such as adding a test.
-
-
 
