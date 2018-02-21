@@ -20,7 +20,7 @@ script:
       if [ "$CODE" == "1" ]; then
         echo "-1"
       fi
-    done 
+    done
 
 after_script:
   - docker-compose down
