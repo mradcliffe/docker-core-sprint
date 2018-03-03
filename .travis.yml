@@ -39,7 +39,7 @@ before_deploy:
   # Checkout dev branch.
   - git config core.fileMode false
   - git config core.autocrlf false
-  - git checkout 8.5.x
+  - git checkout 8.6.x
   # Install composer libraries.
   - composer install --no-interaction --dev
 
