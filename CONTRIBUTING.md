@@ -15,7 +15,7 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
 ## Release
 
 * Travis CI build, tag and release process:
-   * @todo packages images with the release?
+   * Packages images with the release.
    * Changes drupal project submodule into a real repository.
    * Adds a .gitignore to drupal project for ease-of-use.
    * Creates a tarball of the release directory.
@@ -30,10 +30,6 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
       * Docker ToolBox: https://docs.docker.com/toolbox/overview/
    * Linux:
       * Need instructions for Debian and RedHat based distributions as well as instructions for more traditional and alternative Linux desktops (Linux From Scratch, Slackware, Gentoo, etc...).
-* Docker Images:  
-   * If these are not included in `docker-core-sprint-RELEASE.tar.gz` then run through the setup process in the README, and export the images:
-      * `docker image save --output=images.tar wodby/mariadb wodby/drupal-apache wodby/adminer linuxserver/thelounge traefik hoadx/cloud9-alpine mailhog/mailhog mradcliffe2/docker-drupal-php:core-0.4`.
-      * `gzip images.tar`.
 
 ### Items
 
@@ -42,7 +38,6 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
 * Windows/
    * Docker ToolBox.exe
    * Docker for Windows Installer.exe
-   * 7z1801-x64.exe
    * Git-2.16.1.4-64-bit.exe
 * MacOS/
    * Docker.dmg
@@ -50,7 +45,7 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
    * @todo What do we include here?
 * README.pdf
 * LICENSE
-   * List licenses and instructions for obtaining source code for Docker, 7-Zip, and Git.
+   * List licenses and instructions for obtaining source code for Git.
 
 
 ### ResilioSync
