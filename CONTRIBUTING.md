@@ -1,6 +1,6 @@
 # Contributing
 
-@todo flush this out with implementation details
+[![Build Status](https://travis-ci.org/mradcliffe/docker-core-sprint.svg?branch=master)](https://travis-ci.org/mradcliffe/docker-core-sprint)
 
 ## Development
 
