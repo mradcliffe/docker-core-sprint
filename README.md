@@ -65,18 +65,22 @@ You should only use this option if you do **not** use VirtualBox because you wil
 
 #### Windows (Docker for Windows)
 
+   * Run Docker.
    * Open Powershell.
 
 #### Windows (Docker ToolBox)
 
    * Open "Docker Quickstart Terminal".
+      * Make note of the highlighted IP Address e.g. `192.168.99.100`.
 
 #### MacOS
 
+   * Run Docker.
    * Open Terminal.app or your preferred terminal program.
 
 #### Linux
 
+   * Confirm dockerd is running.
    * Open your preferred terminal program such as xterm or Terminal.
 
 <a name="install-images"></a>
