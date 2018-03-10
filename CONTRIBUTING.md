@@ -33,8 +33,7 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
 
 ### Items
 
-* docker-core-sprint-RELEASE.tar.gz
-* docker-images.tar.gz
+* docker-core-sprint-RELEASE.zip
 * Windows/
    * Docker ToolBox.exe
    * Docker for Windows Installer.exe
@@ -44,9 +43,6 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
 * Linux/
    * @todo What do we include here?
 * README.pdf
-* LICENSE
-   * List licenses and instructions for obtaining source code for Git.
-
 
 ### ResilioSync
 

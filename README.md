@@ -6,11 +6,22 @@ Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-spr
 
 ## Getting Started
 
+1. [Get The Files](#get-the-files)
+2. [Install Docker and Other Requirements](#install)
+3. [Extract docker-core-sprint](#extract-files)
+4. [Open Terminal](#open-terminal)
+5. [Install Docker Images](#install-images)
+6. [Start Docker](#start)
+7. [Edit Hosts File](#edit-hosts-file)
+8. [Start Sprinting](#start-contributing)
+
+<a name="get-the-files"></a>
 ### 1. Get The Files
 
 * ResilioSync - Find the folder/directory that was downloaded and copy its contents to your Desktop.
 * USB Drive - Copy docker-core-sprint-RELEASE.zip and Docker installer related to your Operating System from the USB drive to your Desktop.
 
+<a name="install"></a>
 ### 2. Install Docker and Other Requirements
 
 #### Windows (Docker for Windows)
@@ -44,105 +55,89 @@ You should only use this option if you do **not** use VirtualBox because you wil
       * `sudo yum install https://centos7.iuscommunity.org/ius-release.rpm`.
       * `sudo yum install python36u`.
 
+<a name="extract-files"></a>
 ### 3. Extract docker-core-sprint directory
 
-#### Windows:
+   1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows users.
 
-   * Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory and not anywhere else on your file system.
-
-### MacOS/Linux:
-
-   * Open Terminal.app or other terminal application.
-   * Extract the docker-core-sprint-RELEASE.zip file to your Desktop e.g. `unzip docker-core-sprint-0.0.1.zip`.
-   * Change directory to the docker-core-sprint directory e.g. `cd docker-core-sprint`.
-
-### 4. Install Docker Images
+<a name="open-terminal"></a>
+### 4. Open Terminal/Command-Line
 
 #### Windows (Docker for Windows)
 
    * Open Powershell.
-   * Run `docker.exe load -i C:\Users\[your username]\Desktop\docker-core-sprint\images.tar`.
 
 #### Windows (Docker ToolBox)
 
    * Open "Docker Quickstart Terminal".
-   * Run `docker load -i /c/Users/[your username]/Desktop/images.tar`.
-
-#### MacOS:
-
-   * Open Terminal.app or other terminal application.
-   * Run `docker load -i ~/Desktop/images.tar`.
-
-#### Linux:
-
-   * Open a terminal application.
-   * Run `docker load -i /path/to/images.tar`.
-
-### 5. Start docker containers.
-
-#### Windows (Docker for Windows)
-
-   * Run Powershell.
-   * Change directory to the docker-core-sprint directory e.g. `cd C:\Users\[your username]\Desktop\docker-core-sprint`.
-   * Run `docker-compose.exe up -d`. 
-
-#### Windows (Docker ToolBox)
-
-   * Run "Docker Quickstart Terminal"
-      * Please note the IP Address, which is `192.168.99.100` by default but may be different on your system.
-   * Change directory to the docker-core-sprint directory e.g. `cd path/to/docker-core-sprint`.
-   * Run `docker-compose up -d`.
 
 #### MacOS
-   * Open Terminal.app or other terminal application.
-   * Change directory to the docker-core-sprint directory e.g. `cd ~/Desktop/docker-core-sprint`.
-   * Run `docker-compose up -d`.
+
+   * Open Terminal.app or your preferred terminal program.
 
 #### Linux
 
-   * Open terminal application.
-   * Change directory to the docker-core-sprint directory e.g. `cd path/to/docker-core-sprint`.
-   * Install docker-compose locally by running `make`.
-   * Run `. env/bin/activate`.
+   * Open your preferred terminal program such as xterm or Terminal.
+
+<a name="install-images"></a>
+### 5. Install Docker Images
+
+   * Change directory to the docker-core-sprint directory using the `cd` command.
+      * Examples:
+         * Windows (Docker for Windows): `cd C:\Users\[your username]\Desktop\docker-core-sprint`
+         * Windows (Docker ToolBox): `cd /c/Users/[your username]/Desktop/docker-core-sprint`
+         * MacOS: `cd /Users/[your username]/Desktop/docker-core-sprint`
+         * Linux: `cd /path/to/your/docker-core-sprint`
+   * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
+
+<a name="start"></a>
+### 6. Start docker containers.
+
+#### Windows/MacOS
+
+   * Run `docker-compose up -d` or `docker-compose.exe up -d`.
+
+#### Linux
+
+   * Run `make` to install docker-compose.
+   * Run `. env/bin/activate` to enter into a Python 3 environment.
    * Run `docker-compose up -d`.
 
-### 6. Add to hosts file
+<a name="edit-hosts-file"></a>
+### 7. Add to hosts file
 
-#### Windows (Docker for Windows)
+You will need to update your system hosts file so that you can connect to the sprint toolset. This file is located in the following locations according to your operating system and requires administrator access to edit.
 
-   * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
-   * Save the file.
-   * Open a Run command from the start menu.
-   * Run `ipconfig /flushdns`.
+#### Windows
 
-#### Windows (Docker ToolBox)
+Open your `C:\Windows\System32\drivers\etc\hosts` file in an editor such as Notepad.
 
-   * Open `C:\Windows\System32\drivers\etc\hosts` in an editor such as Notepad.
-   * Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal`.
-   * Save the file.
-   * Open a Run command from the start menu.
-   * Run `ipconfig /flushdns`.
+* Docker for Windows: Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
+* Docker Toolbox: Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
 
-#### MacOS
+Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then restart your web browser if it is open already.
 
-   * Open Terminal.app or other terminal application.
-   * Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null` which tells your computer to associate the host names with your local IP address.
-      * Enter your password when prompted.
-   * Run `dscacheutil -flushcache` to clear your DNS cache.
+#### MacOS or Linux
 
-#### Linux:
-   * Open terminal application.
-   * Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null` which tells your computer to associate the host names with your local IP address.
-      * Enter your password when prompted.
+Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null`, and enter your password when prompted.
 
-### 7. Visit the following in your browser
+* On MacOS only, run `dscacheutil -flushcache` and restart your web browser if it is open already.
+
+
+<a name="start-contributing"></a>
+### 8. Visit the following in your browser
 
 * Drupal Core development site: http://drupal.docker.internal:8000
+   * Install Drupal with the database host "mariadb", and the username, password and database name as "drupal8".
 * Chat: http://irc.drupal.docker.internal:8000
+   * Log into chat with fellow contributors.
+   * Also visit https://drupal.slack.com, and join #contribute to chat.
 * IDE: http://ide.drupal.docker.internal:8000
+   * Log into the cloud9 IDE with "drupal" as the user name and password.
 * Mail: http://mail.drupal.docker.internal:8000
+   * Check any e-mails that are sent from the Drupal instance.
 * Admin page: http://adminer.drupal.docker.internal:8000
+   * Drop database tables, etc...
 
 ## Manage Docker
 
@@ -158,4 +153,3 @@ You should only use this option if you do **not** use VirtualBox because you wil
 ### Deploy code changes
 
 * Run `docker-compose restart php` after you've made some changes such as adding a test.
-
