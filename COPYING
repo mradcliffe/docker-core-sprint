@@ -17,7 +17,11 @@ This Software is distributed in a compressed archive with the following third-pa
 
     Drupal - (c) Copyright 2001 - 2013 by the original authors
       See drupal/core/COPYRIGHT.txt for more details.
-      The trademark "Drupal" belongs to Dries Buytaert. 
+      The trademark "Drupal" belongs to Dries Buytaert.
+
+  travis_wait is included and distributed in the source repository under the MIT license:
+
+    travis_wait - (c) Copyright 2015 by m3t (96bd6c8bb869fe632b3650fb7156c797ef8c2a055d31dde634565f3edda485b) <mlt [at] posteo [dot] de>
 
 This Software may be distributed alongside the following third-party software under other copyright notices.
 
