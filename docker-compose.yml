@@ -11,7 +11,7 @@ services:
       - 'traefik.frontend.rule=Host:adminer.drupal.docker.internal'
 
   ide:
-    image: hoadx/cloud9-alpine
+    image: briangilbert/cloud9-alpine:20180318
     environment:
       - USERNAME=drupal
       - PASSWORD=drupal
@@ -24,7 +24,7 @@ services:
 
   irc:
     hostname: thelounge
-    image: linuxserver/thelounge
+    image: linuxserver/thelounge:94
     volumes:
       - ./.thelounge:/config:rw
     labels:

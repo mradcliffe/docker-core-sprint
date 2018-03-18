@@ -4,6 +4,8 @@ Provides a set of docker containers that can be used at a Drupal Core sprint.
 
 Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-sprint).
 
+You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release instead unless you are running Windows 10 or 7 without Hyper-V support (or cannot install and use Docker for Windows).
+
 ## Getting Started
 
 1. [Get The Files](#get-the-files)
@@ -30,7 +32,8 @@ You should only use this option if you do **not** use VirtualBox because you wil
 
 * Run the "Docker for Windows Installer" to install Docker.
    * If your computer does not have Hyper-V support enabled, Docker will try to enable it and Windows will need to be restarted.
-* Run the "Git for Windows" 64-bit installer
+* Run the "Git for Windows" 64-bit installer.
+* Run the "7z1801-x64.exe" 64-bit installer.
 
 #### Windows (Docker ToolBox)
 
@@ -59,6 +62,11 @@ You should only use this option if you do **not** use VirtualBox because you wil
 ### 3. Extract docker-core-sprint directory
 
    1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows users.
+
+#### Windows
+
+   2. Open the docker-core-sprint directory on your Desktop.
+   3. Double-click the "images.tar.xz" file to extract the images using 7-zip. You should have a "images.tar" file in the same directory.
 
 <a name="open-terminal"></a>
 ### 4. Open Terminal/Command-Line

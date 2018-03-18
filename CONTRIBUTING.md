@@ -38,6 +38,7 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
    * Docker ToolBox.exe
    * Docker for Windows Installer.exe
    * Git-2.16.1.4-64-bit.exe
+   * 7zip-1801-x64.exe
 * MacOS/
    * Docker.dmg
 * Linux/

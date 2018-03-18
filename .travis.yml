@@ -25,7 +25,6 @@ script:
 after_script:
   - docker-compose down
 
-before_deploy:
   # Remove the git submodule
   - mv drupal drupal_tmp
   - git submodule deinit drupal
@@ -47,17 +46,20 @@ before_deploy:
   - RELEASE_DIR="docker-core-sprint"
   - RELEASE_FILE="/tmp/${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
   - mkdir -p "/tmp/${RELEASE_DIR}"
-  - cd "/tmp"
+  - cd /tmp
   - cp -a ${TRAVIS_BUILD_DIR}/. "${RELEASE_DIR}/"
   # Copies the example .gitignore file into drupal project directory.
   - cp "${RELEASE_DIR}/example.gitignore" "${RELEASE_DIR}/drupal/.gitignore"
   # Saves images to tarball inside release directory.
-  - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 hoadx/cloud9-alpine linuxserver/thelounge mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.5.2"
-  - docker image save --output="/tmp/${RELEASE_DIR}/images.tar" ${IMAGES}
+  - cd "/tmp/${RELEASE_DIR}"
+  - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 linuxserver/thelounge:94 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.5.2"
+  - docker image save ${IMAGES} -o "/tmp/${RELEASE_DIR}/images.tar"
+  - travis_wait 30 xz --verbose "/tmp/${RELEASE_DIR}/images.tar"
   # Removes this repository's .git/ directory and .travis.yml only.
+  - cd /tmp
   - rm -rf "${RELEASE_DIR}/.git"
   - rm "${RELEASE_DIR}/.travis.yml"
-  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo "Failed to create release build!"
+  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo -e "Failed to create release build!"
 
 deploy:
   provider: releases
