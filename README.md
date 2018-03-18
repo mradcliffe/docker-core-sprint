@@ -100,7 +100,11 @@ You should only use this option if you do **not** use VirtualBox because you wil
          * Windows (Docker ToolBox): `cd /c/Users/[your username]/Desktop/docker-core-sprint`
          * MacOS: `cd /Users/[your username]/Desktop/docker-core-sprint`
          * Linux: `cd /path/to/your/docker-core-sprint`
-   * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
+   * Import docker images:
+      * Examples:
+         * Windows: Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
+         * MacOS: Run `gunzip -c images.tar.xz | docker load`
+         * Linux: Run `xzcat images.tar.xz | docker load`
 
 <a name="start"></a>
 ### 6. Start docker containers.
