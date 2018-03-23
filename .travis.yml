@@ -38,7 +38,7 @@ before_deploy:
   - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
 
   # Downloads dependencies.
-  - RELEASE_DIR=${RELEASE_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
 
   # Saves images to tarball inside release directory.
   - cd "${RELEASE_DIR}"

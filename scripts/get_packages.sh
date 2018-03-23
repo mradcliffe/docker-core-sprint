@@ -34,5 +34,5 @@ users as we do for MacOS and Windows users.
 EOF
 
 # Pack the installation directories.
-./travis_wait -l 1200 zip -r ${RELEASE_DIR}/docker-installers.zip ${DL_DIR}/
+${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 zip -r ${RELEASE_DIR}/docker-installers.zip ${DL_DIR}/
 
