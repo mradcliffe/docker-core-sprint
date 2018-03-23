@@ -3,11 +3,12 @@ This Software is distributed in a compressed archive with the following third-pa
 
   Docker™ images are included in the distributable release as software artifacts and distributed under the MIT license:
 
-    wodby/adminer - (c) Copyright 2017 Wodby
-    wodby/mariadb - (c) Copyright 2017 Wodby
-    wodby/php-apache - (c) Copyright 2017 Wodby
-    hoadx/cloud9-alpine - (c) Copyright 2017 hoadx
-    linuxserver/thelounge - (c) Copyright 2016 LinuxServer.io
+    wodby/adminer - (c) Copyright 2017 Wodby.
+    wodby/mariadb - (c) Copyright 2017 Wodby.
+    wodby/php-apache - (c) Copyright 2017 Wodby.
+    briangilbert/cloud9-alpine - (c) Copyright 2018 Brian Gilbert and respective authors.
+      A derivative work of hoadx/cloud9-alpine - (c) Copyright 2017 HoaDX.
+    linuxserver/thelounge - (c) Copyright 2016 LinuxServer.io.
     mailhog/mailhog - (c) Copyright 2014 - 2017 Ian Kent (http://iankent.uk)
     traefik - (c) Copyright 2016 - 2018 Containous SAS
     mradcliffe2/docker-drupal-php - (c) Copyright 2017 Matthew Radcliffe
@@ -37,3 +38,6 @@ This Software may be distributed alongside the following third-party software un
       See https://github.com/git/git/tree/v2.16.1 for source code.
       The trademark "Git" belongs to the Software Freedom Conservancy, Inc.
 
+  7-Zip is distributed under the GNU Lesser General Public License 2.1 license under the following copyright:
+
+    7-Zip Copyright (C) 1999-2018 Igor Pavlov.

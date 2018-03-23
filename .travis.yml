@@ -26,40 +26,27 @@ after_script:
   - docker-compose down
 
 before_deploy:
-  # Remove the git submodule.
-  - mv drupal drupal_tmp
-  - git submodule deinit drupal
-  - rm drupal_tmp/.git
-  - mv .git/modules/drupal drupal_tmp/.git
-  - rmdir drupal
-  - mv drupal_tmp drupal
-  - cd drupal
-  # Change the working tree of the git repository.
-  - sed -i 's#\.\./\.\./\.\./drupal#..#' .git/config
-  # Checkout dev branch.
-  - git config core.fileMode false
-  - git config core.autocrlf false
-  - git checkout 8.6.x
-  # Install composer libraries.
-  - composer install --no-interaction --dev
+  # Prepare Drupal.
+  - ${TRAVIS_BUILD_DIR}/scripts/prepare_drupal.sh
 
   # Get the tagged release.
-  - RELEASE_DIR="docker-core-sprint"
-  - RELEASE_FILE="/tmp/${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
-  - mkdir -p "/tmp/${RELEASE_DIR}"
-  - cd /tmp
-  - cp -a ${TRAVIS_BUILD_DIR}/. "${RELEASE_DIR}/"
-  # Copies the example .gitignore file into drupal project directory.
-  - cp "${RELEASE_DIR}/example.gitignore" "${RELEASE_DIR}/drupal/.gitignore"
+  - export RELEASE_DIR="/tmp/docker-core-sprint"
+  - export RELEASE_FILE="${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
+  - mkdir -vp "${RELEASE_DIR}"
+
+  # Copies miscellaneous files.
+  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
+
+  # Downloads dependencies.
+  - RELEASE_DIR=${RELEASE_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+
   # Saves images to tarball inside release directory.
-  - cd "/tmp/${RELEASE_DIR}"
+  - cd "${RELEASE_DIR}"
   - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 linuxserver/thelounge:94 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.5.2"
-  - docker image save ${IMAGES} -o "/tmp/${RELEASE_DIR}/images.tar"
-  - ./scripts/travis_wait -l 1200 "xz --verbose /tmp/${RELEASE_DIR}/images.tar"
-  # Removes this repository's .git/ directory and .travis.yml only.
-  - cd /tmp
-  - rm -rf "${RELEASE_DIR}/.git" "${RELEASE_DIR}/scripts"
-  - rm "${RELEASE_DIR}/.travis.yml"
+  - docker image save ${IMAGES} -o "${RELEASE_DIR}/images.tar"
+  - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose ${RELEASE_DIR}/images.tar"
+
+  # Create release.
   - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo -e "Failed to create release build!"
 
 deploy:

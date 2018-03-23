@@ -4,13 +4,13 @@ Provides a set of docker containers that can be used at a Drupal Core sprint.
 
 Based on work by [BrianGilbert](https://github.com/BrianGilbert/docksal-core-sprint).
 
-You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release instead unless you are running Windows 10 or 7 without Hyper-V support (or cannot install and use Docker for Windows).
+You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release instead unless you are running Windows 10 or 7 without Hyper-V support (or cannot install and use Docker for Windows). This is intended as a simpler fallback option for DrupalCon sprints.
 
 ## Getting Started
 
 1. [Get The Files](#get-the-files)
-2. [Install Docker and Other Requirements](#install)
-3. [Extract docker-core-sprint](#extract-files)
+2. [Extract docker-core-sprint](#extract-files)
+3. [Install Docker and Other Requirements](#install)
 4. [Open Terminal](#open-terminal)
 5. [Install Docker Images](#install-images)
 6. [Start Docker](#start)
@@ -21,28 +21,35 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 ### 1. Get The Files
 
 * ResilioSync - Find the folder/directory that was downloaded and copy its contents to your Desktop.
-* USB Drive - Copy docker-core-sprint-RELEASE.zip and Docker installer related to your Operating System from the USB drive to your Desktop.
+* USB Drive - Copy docker-core-sprint-RELEASE.zip from the USB drive to your Desktop and extract it.
+
+<a name="extract-files"></a>
+### 2. Extract docker-core-sprint directory
+
+   1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows and MacOS users.
 
 <a name="install"></a>
-### 2. Install Docker and Other Requirements
+### 3. Install Docker and Other Requirements
 
 #### Windows (Docker for Windows)
 
 You should only use this option if you do **not** use VirtualBox because you will be unable to use VirtualBox with Hyper-V enabled.
 
+Find the Docker and dependency installers in the Windows directory of the extracted docker-core-sprint directory. 
+
 * Run the "Docker for Windows Installer" to install Docker.
    * If your computer does not have Hyper-V support enabled, Docker will try to enable it and Windows will need to be restarted.
 * Run the "Git for Windows" 64-bit installer.
-* Run the "7z1801-x64.exe" 64-bit installer.
 
 #### Windows (Docker ToolBox)
 
-* Run the "Docker ToolBox" installer.
+Find the Docker and dependency installers in the Windows directory of the extracted docker-core-sprint directory. 
+
+* Run the "Docker ToolBox" installer"
 
 #### MacOS
 
 * Open "Docker.dmg" file, and drag and drop the Docker application file to your Applications directory.
-* Run Docker.
 
 #### Linux
 
@@ -58,66 +65,66 @@ You should only use this option if you do **not** use VirtualBox because you wil
       * `sudo yum install https://centos7.iuscommunity.org/ius-release.rpm`.
       * `sudo yum install python36u`.
 
-<a name="extract-files"></a>
-### 3. Extract docker-core-sprint directory
-
-   1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows users.
-
-#### Windows
-
-   2. Open the docker-core-sprint directory on your Desktop.
-   3. Double-click the "images.tar.xz" file to extract the images using 7-zip. You should have a "images.tar" file in the same directory.
 
 <a name="open-terminal"></a>
 ### 4. Open Terminal/Command-Line
 
 #### Windows (Docker for Windows)
 
-   * Run Docker.
-   * Open Powershell.
+* Run Docker.
+* Open Powershell.
 
 #### Windows (Docker ToolBox)
 
-   * Open "Docker Quickstart Terminal".
-      * Make note of the highlighted IP Address e.g. `192.168.99.100`.
+* Open "Docker Quickstart Terminal".
+   * Make note of the highlighted IP Address e.g. `192.168.99.100`.
 
 #### MacOS
 
-   * Run Docker.
-   * Open Terminal.app or your preferred terminal program.
+* Run Docker.
+   * Please do not update Docker at this time.
+* Open Terminal.app or your preferred terminal program.
 
 #### Linux
 
-   * Confirm dockerd is running.
-   * Open your preferred terminal program such as xterm or Terminal.
+* Run the docker daemon. Confirm dockerd is running.
+  * This is usually done using a SysV init script, Systemd command or BSD-style init script.
+* Open your preferred terminal program such as xterm or Terminal.
 
 <a name="install-images"></a>
 ### 5. Install Docker Images
 
-   * Change directory to the docker-core-sprint directory using the `cd` command.
-      * Examples:
-         * Windows (Docker for Windows): `cd C:\Users\[your username]\Desktop\docker-core-sprint`
-         * Windows (Docker ToolBox): `cd /c/Users/[your username]/Desktop/docker-core-sprint`
-         * MacOS: `cd /Users/[your username]/Desktop/docker-core-sprint`
-         * Linux: `cd /path/to/your/docker-core-sprint`
-   * Import docker images:
-      * Examples:
-         * Windows: Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
-         * MacOS: Run `gunzip -c images.tar.xz | docker load`
-         * Linux: Run `xzcat images.tar.xz | docker load`
+* Change directory to the docker-core-sprint directory using the `cd` command.
+   * Examples:
+      * Windows (Docker for Windows): `cd C:\Users\[your username]\Desktop\docker-core-sprint`
+      * Windows (Docker ToolBox): `cd /c/Users/[your username]/Desktop/docker-core-sprint`
+      * MacOS: `cd /Users/[your username]/Desktop/docker-core-sprint`
+      * Linux: `cd /path/to/your/docker-core-sprint`
+* Import docker images:
+   * Examples:
+      * Windows (Docker for Windows):
+         * Run `Windows\7za x images.tar.xz`
+         * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
+      * Windows (Docker ToolBox):
+         * Run `Windows/7za x images.tar.xz`
+         * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
+      * MacOS: Run `gunzip -c images.tar.xz | docker load`
+      * Linux: Run `xzcat images.tar.xz | docker load`
 
 <a name="start"></a>
 ### 6. Start docker containers.
 
+Start your environment with **docker-compose**!
+
 #### Windows/MacOS
 
-   * Run `docker-compose up -d` or `docker-compose.exe up -d`.
+* Run `docker-compose up -d` or `docker-compose.exe up -d`.
 
 #### Linux
 
-   * Run `make` to install docker-compose.
-   * Run `. env/bin/activate` to enter into a Python 3 environment.
-   * Run `docker-compose up -d`.
+* Run `make` to install docker-compose.
+* Run `. env/bin/activate` to enter into a Python 3 environment.
+* Run `docker-compose up -d`.
 
 <a name="edit-hosts-file"></a>
 ### 7. Add to hosts file
@@ -138,7 +145,6 @@ Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then res
 Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null`, and enter your password when prompted.
 
 * On MacOS only, run `dscacheutil -flushcache` and restart your web browser if it is open already.
-
 
 <a name="start-contributing"></a>
 ### 8. Visit the following in your browser

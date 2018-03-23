@@ -33,17 +33,27 @@ See [mradcliffe/docker-drupal-php](https://github.com/mradcliffe/docker-drupal-p
 
 ### Items
 
-* docker-core-sprint-RELEASE.zip
+docker-core-sprint-RELEASE.zip should contain the following:
+
+* .gitignore
+* .thelounge
+* licenses/
+* drupal/
 * Windows/
    * Docker ToolBox.exe
    * Docker for Windows Installer.exe
+   * 7za.exe
    * Git-2.16.1.4-64-bit.exe
-   * 7zip-1801-x64.exe
 * MacOS/
    * Docker.dmg
 * Linux/
+   * README
    * @todo What do we include here?
-* README.pdf
+* COPYING
+* LICENSE
+* Makefile
+* README.md
+* requirements.txt
 
 ### ResilioSync
 
