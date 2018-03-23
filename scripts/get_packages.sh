@@ -6,8 +6,6 @@ DOCKER_TOOLBOX="https://download.docker.com/win/stable/DockerToolbox.exe"
 GIT_WIN="https://github.com/git-for-windows/git/releases/download/v2.16.2.windows.1/PortableGit-2.16.2-64-bit.7z.exe"
 SEVENZIP_WIN="https://www.7-zip.org/a/7z1801-x64.exe"
 
-DL_DIR="/tmp/docker-core-sprint-download"
-
 # Create directories.
 mkdir -vp ${DL_DIR}/Windows
 mkdir -vp ${DL_DIR}/MacOS
@@ -32,7 +30,4 @@ You should follow the instructions to download Docker for your distribution at
 Please tell us how best we can distribute Docker Community Edition for Linux
 users as we do for MacOS and Windows users.
 EOF
-
-# Pack the installation directories.
-zip -qr ${RELEASE_DIR}/docker-installers.zip ${DL_DIR}/ | exit 1
 

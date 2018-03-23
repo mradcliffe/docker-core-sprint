@@ -32,13 +32,15 @@ before_deploy:
   # Get the tagged release.
   - export RELEASE_DIR="/tmp/docker-core-sprint"
   - export RELEASE_FILE="${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
+  - export DL_DIR="/tmp/docker-core-sprint-download"
   - mkdir -vp "${RELEASE_DIR}"
 
   # Copies miscellaneous files.
   - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
 
   # Downloads dependencies.
-  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} DL_DIR=${DL_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+  - zip -q -r "${RELEASE_DIR}/docker-installers.zip" "${DL_DIR}"
 
   # Saves images to tarball inside release directory.
   - cd "${RELEASE_DIR}"
@@ -47,7 +49,7 @@ before_deploy:
   - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose ${RELEASE_DIR}/images.tar"
 
   # Create release.
-  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo -e "Failed to create release build!"
+  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}"
 
 deploy:
   provider: releases
