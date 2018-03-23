@@ -26,7 +26,7 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 <a name="extract-files"></a>
 ### 2. Extract docker-core-sprint directory
 
-   1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows and MacOS users.
+   1. Extract the docker-core-sprint-OPERATINGSYSTEM-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows and MacOS users.
    2. Browse to this directory.
    3. Unzip the docker-installers.zip file.
 
@@ -51,7 +51,7 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 
 #### MacOS
 
-* Open "Docker.dmg" file, and drag and drop the Docker application file to your Applications directory.
+* Open "Docker.dmg" file in the MacOS directory, and drag and drop the Docker application file to your Applications directory.
 
 #### Linux
 
@@ -105,10 +105,10 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 * Import docker images:
    * Examples:
       * Windows (Docker for Windows):
-         * Run `bin\7za x images.tar.xz`
+         * Run `Windows\7za x images.tar.xz`
          * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
       * Windows (Docker ToolBox):
-         * Run `bin/7za x images.tar.xz`
+         * Run `Windows/7za x images.tar.xz`
          * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
       * MacOS: Run `gunzip -c images.tar.xz | docker load`
       * Linux: Run `xzcat images.tar.xz | docker load`
