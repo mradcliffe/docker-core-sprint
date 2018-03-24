@@ -31,14 +31,17 @@ before_deploy:
 
   # Get the tagged release.
   - export RELEASE_DIR="/tmp/docker-core-sprint"
-  - export RELEASE_FILE="${RELEASE_DIR}-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_MACOS="/tmp/docker-core-sprint-macos-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_WIN="/tmp/docker-core-sprint-windows-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_LINUX="/tmp/docker-core-sprint-linux-${TRAVIS_BRANCH}.zip"
+  - export DL_DIR="/tmp/docker-downloads"
   - mkdir -vp "${RELEASE_DIR}"
 
   # Copies miscellaneous files.
   - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
 
   # Downloads dependencies.
-  - RELEASE_DIR=${RELEASE_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} DL_DIR=${DL_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
 
   # Saves images to tarball inside release directory.
   - cd "${RELEASE_DIR}"
@@ -46,14 +49,24 @@ before_deploy:
   - docker image save ${IMAGES} -o "${RELEASE_DIR}/images.tar"
   - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose ${RELEASE_DIR}/images.tar"
 
-  # Create release.
-  - zip -q -r "${RELEASE_FILE}" "${RELEASE_DIR}" || echo -e "Failed to create release build!"
+  # Create release. Why is travis not doing zip -x correctly?
+  - mv "${DL_DIR}/MacOS" "${RELEASE_DIR}/"
+  - zip -q -r "${RELEASE_MACOS}" "${RELEASE_DIR}"
+  - rm -rf "${RELEASE_DIR}/MacOS"
+  - mv "${DL_DIR}/Windows" "${RELEASE_DIR}/"
+  - zip -q -r "${RELEASE_WIN}" "${RELEASE_DIR}"
+  - rm -rf "${RELEASE_DIR}/Windows"
+  - mv "${DL_DIR}/Linux" "${RELEASE_DIR}/"
+  - zip -q -r "${RELEASE_LINUX}" "${RELEASE_DIR}"
 
 deploy:
   provider: releases
   api_key:
     secure: "bn2qpZqR5kt67aOwDSoJaHCN1G9lJYOE8Dy4kzG41VJmQYAaf0oGdq8AP9IxgaTDotGjsYhwLir4S1BzAWqlDWB63ZKZm0X0K56RZPwpLHevRUOz8sjZxzKa4VW2X3guBvdajOIMg3JKaa2OlWCPlzZ22VoCH3Go/XLe8bgtoDmonev6dJxSg8rPgFuFH5j636mcwgFKPBZaeDArO5dVlsW4O5Z69fwl1oLet+VOnd8Qkog2Tlle93jbF1EoQSsvjGKmPqkoscxyYNpqXLqVqQ+T/c0eN3OGieFUH2+7wDHqNszVWAdwoek0BRihrFmi+ycB5mmpx5YVjuyS6fzqCPVq9BlONjhxdJN0JBaUgSjkdrFKCwCK4zDT0WDCJEqMkp75A3FPS67EugiTbHqBjEujgtqR1Xy3JHr+w5ZUuTu5bYEMb8yidy27MZBJn6FY2wAZN1+8p/jYSjhSMYTtGGnhB3VeBUSnybZQ03+3ht+ngomzLut/hyNvy6ki4i/0W8Quan3e0F3mNsdkbsw3yGh+OpPXi8spW15EL/eK/Dd/H0EezRePaJ61w+GpTEQ+I991eKNmfiRwQttb96XeIqUhFGc2xwlOQqyDcNgTYg3moxTjUxRzPCkixQpMecCREt5s2XOzK8nuqxAVCK8W+ZHd+RR6l0+y/xLGFOzOEkg="
-  file: "${RELEASE_FILE}"
+  file:
+    - "${RELEASE_MACOS}"
+    - "${RELEASE_WIN}"
+    - "${RELEASE_LINUX}"
   skip_cleanup: true
   on:
     tags: true

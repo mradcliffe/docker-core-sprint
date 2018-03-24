@@ -26,7 +26,9 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 <a name="extract-files"></a>
 ### 2. Extract docker-core-sprint directory
 
-   1. Extract the docker-core-sprint-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows and MacOS users.
+   1. Extract the docker-core-sprint-OPERATINGSYSTEM-RELEASE.zip file to your Desktop. It is required to be within your user directory for Windows and MacOS users.
+   2. Browse to this directory.
+   3. Unzip the docker-installers.zip file.
 
 <a name="install"></a>
 ### 3. Install Docker and Other Requirements
@@ -39,7 +41,7 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 
 * Run the "Docker for Windows Installer" to install Docker.
    * If your computer does not have Hyper-V support enabled, Docker will try to enable it and Windows will need to be restarted.
-* Run the "Git for Windows" 64-bit installer.
+* Run the "Portable-Git" 64-bit installer.
 
 #### Windows (Docker ToolBox)
 
@@ -49,7 +51,7 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 
 #### MacOS
 
-* Open "Docker.dmg" file, and drag and drop the Docker application file to your Applications directory.
+* Open "Docker.dmg" file in the MacOS directory, and drag and drop the Docker application file to your Applications directory.
 
 #### Linux
 
