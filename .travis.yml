@@ -31,10 +31,9 @@ before_deploy:
 
   # Get the tagged release.
   - export RELEASE_DIR="/tmp/docker-core-sprint"
-  - export RELEASE_MACOS="${RELEASE_DIR}-macos-${TRAVIS_BRANCH}.zip"
-  - export RELEASE_WIN="${RELEASE_DIR}-windows-${TRAVIS_BRANCH}.zip"
-  - export RELEASE_LINUX="${RELEASE_DIR}-linux-${TRAVIS_BRANCH}.zip"
-  - export DL_DIR="/tmp/docker-core-sprint-download"
+  - export RELEASE_MACOS="/tmp/docker-core-sprint-macos-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_WIN="/tmp/docker-core-sprint-windows-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_LINUX="/tmp/docker-core-sprint-linux-${TRAVIS_BRANCH}.zip"
   - mkdir -vp "${RELEASE_DIR}"
 
   # Copies miscellaneous files.
@@ -48,8 +47,6 @@ before_deploy:
   - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 linuxserver/thelounge:94 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.5.2"
   - docker image save ${IMAGES} -o "${RELEASE_DIR}/images.tar"
   - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose ${RELEASE_DIR}/images.tar"
-  - ls -alh ${RELEASE_DIR}
-  - rm "${RELEASE_DIR}/images.tar"
 
   # Create release.
   - zip -q -r "${RELEASE_MACOS}" "${RELEASE_DIR}" -x "Windows/*" -x "Linux/*"
