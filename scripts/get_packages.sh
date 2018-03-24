@@ -10,7 +10,6 @@ SEVENZIP_WIN="https://www.7-zip.org/a/7z1801-x64.exe"
 mkdir -vp ${RELEASE_DIR}/Windows
 mkdir -vp ${RELEASE_DIR}/MacOS
 mkdir -vp ${RELEASE_DIR}/Linux
-mkdir -vp ${RELEASE_DIR}/bin
 
 # Download Docker for MacOS.
 curl -#SL -o ${RELEASE_DIR}/MacOS/Docker.dmg ${DOCKER_MACOS} || exit 1
