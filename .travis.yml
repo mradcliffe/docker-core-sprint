@@ -30,27 +30,28 @@ before_deploy:
   - ${TRAVIS_BUILD_DIR}/scripts/prepare_drupal.sh
 
   # Get the tagged release.
-  - export RELEASE_DIR="/tmp/docker-core-sprint"
+  - export RELEASE_DIR="docker-core-sprint"
   - export RELEASE_MACOS="/tmp/docker-core-sprint-macos-${TRAVIS_BRANCH}.zip"
   - export RELEASE_WIN="/tmp/docker-core-sprint-windows-${TRAVIS_BRANCH}.zip"
   - export RELEASE_TOOLBOX="/tmp/docker-core-sprint-toolbox-${TRAVIS_BRANCH}.zip"
   - export RELEASE_LINUX="/tmp/docker-core-sprint-linux-${TRAVIS_BRANCH}.zip"
   - export DL_DIR="/tmp/docker-downloads"
-  - mkdir -vp "${RELEASE_DIR}"
+  - mkdir -vp "/tmp/${RELEASE_DIR}"
 
   # Copies miscellaneous files.
-  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
+  - RELEASE_DIR=/tmp/${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR}/scripts/copy_files.sh
 
   # Downloads dependencies.
-  - RELEASE_DIR=${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} DL_DIR=${DL_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
+  - RELEASE_DIR=/tmp/${RELEASE_DIR} TRAVIS_BUILD_DIR=${TRAVIS_BUILD_DIR} DL_DIR=${DL_DIR} ${TRAVIS_BUILD_DIR}/scripts/get_packages.sh
 
   # Saves images to tarball inside release directory.
-  - cd "${RELEASE_DIR}"
+  - cd "/tmp/${RELEASE_DIR}"
   - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 linuxserver/thelounge:94 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.5.2"
-  - docker image save ${IMAGES} -o "${RELEASE_DIR}/images.tar"
-  - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose ${RELEASE_DIR}/images.tar"
+  - docker image save ${IMAGES} -o "/tmp/${RELEASE_DIR}/images.tar"
+  - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose /tmp/${RELEASE_DIR}/images.tar"
 
   # Create release. Why is travis not doing zip -x correctly?
+  - cd /tmp
   - mv "${DL_DIR}/MacOS" "${RELEASE_DIR}/"
   - zip -q -r "${RELEASE_MACOS}" "${RELEASE_DIR}"
   - rm -rf "${RELEASE_DIR}/MacOS"
