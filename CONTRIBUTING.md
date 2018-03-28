@@ -40,10 +40,10 @@ docker-core-sprint-RELEASE.zip should contain the following:
 * licenses/
 * drupal/
 * Windows/
-   * Docker ToolBox.exe
-   * Docker for Windows Installer.exe
+   * Docker ToolBox.exe (Docker ToolBox only)
+   * Docker for Windows Installer.exe (Docker for Windows onlyY)
    * 7za.exe
-   * Git-2.16.1.4-64-bit.exe
+   * Git-2.16.1.4-64-bit.exe (Docker for Windows only)
 * MacOS/
    * Docker.dmg
 * Linux/

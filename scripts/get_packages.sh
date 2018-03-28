@@ -8,6 +8,7 @@ SEVENZIP_WIN="https://www.7-zip.org/a/7z1801-x64.exe"
 
 # Create directories.
 mkdir -vp ${DL_DIR}/Windows
+mkdir -vp ${DL_DIR}/Toolbox
 mkdir -vp ${DL_DIR}/MacOS
 mkdir -vp ${DL_DIR}/Linux
 
@@ -16,8 +17,9 @@ curl -#SL -o ${DL_DIR}/MacOS/Docker.dmg ${DOCKER_MACOS} || exit 1
 
 # Download Docker for Windows and Docker ToolBox and other dependencies.
 curl -#SL -o ${DL_DIR}/Windows/Docker\ for\ Windows\ Installer.exe ${DOCKER_WIN10} || exit 1
-curl -#SL -o ${DL_DIR}/Windows/DockerToolbox.exe ${DOCKER_TOOLBOX} || exit 1
+curl -#SL -o ${DL_DIR}/Toolbox/DockerToolbox.exe ${DOCKER_TOOLBOX} || exit 1
 curl -#SL -o ${DL_DIR}/Windows/7za.exe ${SEVENZIP_WIN} || exit 1
+cp ${DL_DIR}/Windows/7za.exe ${DL_DIR}/Toolbox/7za.exe
 curl -#SL -o ${DL_DIR}/Windows/PortableGit-2.16.2-64-bit.7z.exe ${GIT_WIN} || exit 1
 
 # Write out some instructions for Linux users.

@@ -33,6 +33,7 @@ before_deploy:
   - export RELEASE_DIR="/tmp/docker-core-sprint"
   - export RELEASE_MACOS="/tmp/docker-core-sprint-macos-${TRAVIS_BRANCH}.zip"
   - export RELEASE_WIN="/tmp/docker-core-sprint-windows-${TRAVIS_BRANCH}.zip"
+  - export RELEASE_TOOLBOX="/tmp/docker-core-sprint-toolbox-${TRAVIS_BRANCH}.zip"
   - export RELEASE_LINUX="/tmp/docker-core-sprint-linux-${TRAVIS_BRANCH}.zip"
   - export DL_DIR="/tmp/docker-downloads"
   - mkdir -vp "${RELEASE_DIR}"
@@ -56,6 +57,9 @@ before_deploy:
   - mv "${DL_DIR}/Windows" "${RELEASE_DIR}/"
   - zip -q -r "${RELEASE_WIN}" "${RELEASE_DIR}"
   - rm -rf "${RELEASE_DIR}/Windows"
+  - mv "${DL_DIR}/Toolbox" "${RELEASE_DIR}/Windows"
+  - zip -q -r "${RELEASE_TOOLBOX}" "${RELEASE_DIR}"
+  - rm -rf "${RELEASE_DIR}/Windows"
   - mv "${DL_DIR}/Linux" "${RELEASE_DIR}/"
   - zip -q -r "${RELEASE_LINUX}" "${RELEASE_DIR}"
 
@@ -66,8 +70,10 @@ deploy:
   file:
     - "${RELEASE_MACOS}"
     - "${RELEASE_WIN}"
+    - "${RELEASE_TOOLBOX}"
     - "${RELEASE_LINUX}"
   skip_cleanup: true
+  overwrite: true
   on:
     tags: true
 
