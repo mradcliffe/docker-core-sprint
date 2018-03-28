@@ -42,12 +42,17 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 * Run the "Docker for Windows Installer" to install Docker.
    * If your computer does not have Hyper-V support enabled, Docker will try to enable it and Windows will need to be restarted.
 * Run the "Portable-Git" 64-bit installer.
+* Run the "7za.exe" installer.
+* Right-click the "docker-images.tar.xz" file and choose the "Extract Here" option.
 
 #### Windows (Docker ToolBox)
 
 Find the Docker and dependency installers in the Windows directory of the extracted docker-core-sprint directory. 
 
-* Run the "Docker ToolBox" installer"
+* Run the "Docker ToolBox" installer.
+   * If you do not already have Git, check the Git for Windows option during the install process.
+* Run the "7za.exe" installer.
+* Right-click the "docker-images.tar.xz" file and choose the "Extract Here" option.
 
 #### MacOS
 
@@ -105,10 +110,8 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 * Import docker images:
    * Examples:
       * Windows (Docker for Windows):
-         * Run `Windows\7za x images.tar.xz`
          * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
       * Windows (Docker ToolBox):
-         * Run `Windows/7za x images.tar.xz`
          * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
       * MacOS: Run `gunzip -c images.tar.xz | docker load`
       * Linux: Run `xzcat images.tar.xz | docker load`
