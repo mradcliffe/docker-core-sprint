@@ -60,18 +60,12 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 
 #### Linux
 
-* Install the equivalent packages for Docker Community Edition from the following distributions:
-   * [Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-   * [Debian](https://docs.docker.com/install/linux/docker-ce/debian/)
-   * [CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+Please read the Linux/README.md file for more details about installing docker, and do the following once you have installed docker.
+
 * Confirm that the docker daemon (`dockerd`) is running.
    * systemd: `sudo systemctl start docker.service`.
-* Install python3:
-   * Debian/Ubuntu: `sudo apt-get install python3.6`.
-   * CentOS:
-      * `sudo yum install https://centos7.iuscommunity.org/ius-release.rpm`.
-      * `sudo yum install python36u`.
-
+   * or via some command such as `sudo nohup /usr/bin/unshare -m -- dockerd -p /var/run/dockerd.pid >> /var/log/dockerd.log 2>&1 &`
+* Confirm that python 3.6 is installed.
 
 <a name="open-terminal"></a>
 ### 4. Open Terminal/Command-Line
