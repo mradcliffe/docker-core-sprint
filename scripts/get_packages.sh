@@ -31,6 +31,7 @@ cd ${DL_DIR}/Linux
 tar zxf docker.tgz
 tar Jcf docker.tar.xz docker/
 rm docker.tgz
+rm -rf docker/
 cd /tmp
 
 cat <<EOF > "${DL_DIR}/Linux/README.md"
