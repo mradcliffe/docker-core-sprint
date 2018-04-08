@@ -81,8 +81,8 @@ services:
       - 'traefik.frontend.rule=Host:drupal.docker.internal'
 
   traefik:
-    image: traefik:1.5.2
-    command: -c /dev/null --web --docker --logLevel=INFO
+    image: traefik:1.6.0-rc4-alpine
+    command: -c /dev/null --web --docker --logLevel=ERROR
     ports:
       - '8000:80'
       - '8080:8080' # Dashboard
