@@ -27,7 +27,7 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 <a name="extract-files"></a>
 ### 2. Extract docker-core-sprint directory
 
-   1. Extract the docker-core-sprint-OPERATINGSYSTEM-RELEASE.zip file to your Desktop. It is required to be within your user directory.
+   1. Extract the docker-core-sprint-macos-RELEASE.zip file to your Desktop. It is required to be within your user directory.
    2. Browse to this directory.
    3. Unzip the docker-installers.zip file.
 
