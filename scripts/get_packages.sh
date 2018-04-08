@@ -15,8 +15,10 @@ mkdir -vp ${DL_DIR}/Linux
 
 # Download Docker for MacOS.
 curl -#SL -o ${DL_DIR}/MacOS/Docker.dmg ${DOCKER_MACOS} || exit 1
+mv "${RELEASE_DIR}/INSTALL-mac.md" "${DL_DIR}/MacOS/INSTALL.md"
 
 # Download Docker for Windows and Docker ToolBox and other dependencies.
+mv "${RELEASE_DIR}/INSTALL-windows.md" "${DL_DIR}/Windows/INSTALL.md"
 curl -#SL -o ${DL_DIR}/Windows/Docker\ for\ Windows\ Installer.exe ${DOCKER_WIN10} || exit 1
 curl -#SL -o ${DL_DIR}/Toolbox/DockerToolbox.exe ${DOCKER_TOOLBOX} || exit 1
 curl -#SL -o ${DL_DIR}/Windows/7za.exe ${SEVENZIP_WIN} || exit 1
@@ -34,6 +36,7 @@ rm docker.tgz
 rm -rf docker/
 cd /tmp
 
+mv "${RELEASE_DIR}/INSTALL-linux.md" "${DL_DIR}/Linux/INSTALL.md"
 cat <<EOF > "${DL_DIR}/Linux/README.md"
 You may use the following Docker static binaries provided by Docker, or follow
 the instructions at https:///www.docker.com/community-edition for your Linux
