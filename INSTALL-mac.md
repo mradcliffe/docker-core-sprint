@@ -27,7 +27,7 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 <a name="extract-files"></a>
 ### 2. Extract docker-core-sprint directory
 
-   1. Extract the docker-core-sprint-OPERATINGSYSTEM-RELEASE.zip file to your Desktop. It is required to be within your user directory.
+   1. Extract the docker-core-sprint-macos-RELEASE.zip file to your Desktop. It is required to be within your user directory.
    2. Browse to this directory.
    3. Unzip the docker-installers.zip file.
 
@@ -96,3 +96,12 @@ Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.
 ### Deploy code changes
 
 * Run `docker-compose restart php` after you've made some changes such as adding a test.
+
+### Manage volumes
+
+* List volumes with `docker volume ls`.
+* Remove volumes (after `docker down`) with `docker volume rm VOLUME`.
+
+For example, you might have to `docker volume rm dockercoresprint_web` to get
+rid of an old `settings.php` if you want to install Drupal with a different
+profile.

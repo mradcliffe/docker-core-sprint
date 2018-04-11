@@ -19,6 +19,7 @@ mv "${RELEASE_DIR}/INSTALL-mac.md" "${DL_DIR}/MacOS/INSTALL.md"
 
 # Download Docker for Windows and Docker ToolBox and other dependencies.
 mv "${RELEASE_DIR}/INSTALL-windows.md" "${DL_DIR}/Windows/INSTALL.md"
+mv "${RELEASE_DIR}/INSTALL-windows-toolbox.md" "${DL_DIR}/Toolbox/INSTALL.md"
 curl -#SL -o ${DL_DIR}/Windows/Docker\ for\ Windows\ Installer.exe ${DOCKER_WIN10} || exit 1
 curl -#SL -o ${DL_DIR}/Toolbox/DockerToolbox.exe ${DOCKER_TOOLBOX} || exit 1
 curl -#SL -o ${DL_DIR}/Windows/7za.exe ${SEVENZIP_WIN} || exit 1

@@ -27,14 +27,11 @@ You should use a [drud/quicksprint](https://github.com/drud/quicksprint) release
 <a name="extract-files"></a>
 ### 2. Extract docker-core-sprint directory
 
-   1. Extract the docker-core-sprint-OPERATINGSYSTEM-RELEASE.zip file to your Desktop. It is required to be within your user directory.
+   1. Extract the docker-core-sprint-windows-RELEASE.zip file to your Desktop. It is required to be within your user directory.
    2. Browse to this directory.
-   3. Unzip the docker-installers.zip file.
 
 <a name="install"></a>
 ### 3. Install Docker and Other Requirements
-
-#### Windows (Docker for Windows)
 
 You should only use this option if you do **not** use VirtualBox because you will be unable to use VirtualBox with Hyper-V enabled.
 
@@ -46,35 +43,17 @@ Find the Docker and dependency installers in the Windows directory of the extrac
 * Run the "7za.exe" installer.
 * Right-click the "docker-images.tar.xz" file and choose the "Extract Here" option.
 
-#### Windows (Docker ToolBox)
-
-Find the Docker and dependency installers in the Windows directory of the extracted docker-core-sprint directory. 
-
-* Run the "Docker ToolBox" installer.
-   * If you do not already have Git, check the Git for Windows option during the install process.
-* Run the "7za.exe" installer.
-* Right-click the "docker-images.tar.xz" file and choose the "Extract Here" option.
-
 <a name="open-terminal"></a>
 ### 4. Open Terminal/Command-Line
 
-#### Windows (Docker for Windows)
-
 * Run Docker.
 * Open Powershell.
-
-#### Windows (Docker ToolBox)
-
-* Open "Docker Quickstart Terminal".
-   * Make note of the highlighted IP Address e.g. `192.168.99.100`.
 
 <a name="install-images"></a>
 ### 5. Install Docker Images
 
 * Change directory to the docker-core-sprint directory using the `cd` command.
-   * Examples:
-      * Windows (Docker for Windows): `cd C:\Users\[your username]\Desktop\docker-core-sprint`
-      * Windows (Docker ToolBox): `cd /c/Users/[your username]/Desktop/docker-core-sprint`
+   * Run `cd C:\Users\[your username]\Desktop\docker-core-sprint`
 * Import docker images:
    * Run `docker load -i images.tar` or `docker.exe load -i images.tar`.
 
@@ -88,12 +67,11 @@ Start your environment with **docker-compose**!
 <a name="edit-hosts-file"></a>
 ### 7. Add to hosts file
 
-You will need to update your system hosts file so that you can connect to the sprint toolset. This file is located in the following locations according to your operating system and requires administrator access to edit.
+You will need to update your system hosts file so that you can connect to the sprint toolset. This file is located in the following location and requires administrator access to edit.
 
 Open your `C:\Windows\System32\drivers\etc\hosts` file in an editor such as Notepad.
 
-* Docker for Windows: Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
-* Docker Toolbox: Add `192.168.99.100      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
+* Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
 
 Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then restart your web browser if it is open already.
 
@@ -126,3 +104,12 @@ Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then res
 ### Deploy code changes
 
 * Run `docker-compose restart php` after you've made some changes such as adding a test.
+
+### Manage volumes
+
+* List volumes with `docker volume ls`.
+* Remove volumes (after `docker down`) with `docker volume rm VOLUME`.
+
+For example, you might have to `docker volume rm dockercoresprint_web` to get
+rid of an old `settings.php` if you want to install Drupal with a different
+profile.
