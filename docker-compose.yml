@@ -22,16 +22,6 @@ services:
       - 'traefik.port=8000'
       - 'traefik.frontend.rule=Host:ide.drupal.docker.internal'
 
-  irc:
-    hostname: thelounge
-    image: linuxserver/thelounge:94
-    volumes:
-      - ./.thelounge:/config:rw
-    labels:
-      - 'traefik.backend=irc'
-      - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:irc.drupal.docker.internal'
-
   mailhog:
     image: mailhog/mailhog:v1.0.0
     labels:

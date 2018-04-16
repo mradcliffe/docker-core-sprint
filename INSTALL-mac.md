@@ -63,7 +63,7 @@ Start your environment with **docker-compose**!
 
 You will need to update your system hosts file so that you can connect to the sprint toolset. This file is located in the following locations according to your operating system and requires administrator access to edit.
 
-Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null`, and enter your password when prompted.
+Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal" | sudo tee -a /etc/hosts > /dev/null`, and enter your password when prompted.
 
 * Run `dscacheutil -flushcache` and restart your web browser if it is open already.
 
@@ -72,9 +72,8 @@ Run `echo "127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.
 
 * Drupal Core development site: http://drupal.docker.internal:8000
    * Install Drupal with the database host "mariadb", and the username, password and database name as "drupal8".
-* Chat: http://irc.drupal.docker.internal:8000
-   * Log into chat with fellow contributors.
-   * Also visit https://drupal.slack.com, and join #contribute to chat.
+* Chat: https://drupal.org/chat
+   * Signup for Drupal Slack, use IRC or join https://drupalchat.eu.
 * IDE: http://ide.drupal.docker.internal:8000
    * Log into the cloud9 IDE with "drupal" as the user name and password.
 * Mail: http://mail.drupal.docker.internal:8000

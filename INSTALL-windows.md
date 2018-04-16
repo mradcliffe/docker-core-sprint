@@ -71,7 +71,7 @@ You will need to update your system hosts file so that you can connect to the sp
 
 Open your `C:\Windows\System32\drivers\etc\hosts` file in an editor such as Notepad.
 
-* Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal irc.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
+* Add `127.0.0.1      drupal.docker.internal ide.drupal.docker.internal mail.drupal.docker.internal adminer.drupal.docker.internal` at the bottom of the editor and save.
 
 Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then restart your web browser if it is open already.
 
@@ -80,9 +80,8 @@ Open a "Run command" from the start menu, run `ipconfig /flushdns`, and then res
 
 * Drupal Core development site: http://drupal.docker.internal:8000
    * Install Drupal with the database host "mariadb", and the username, password and database name as "drupal8".
-* Chat: http://irc.drupal.docker.internal:8000
-   * Log into chat with fellow contributors.
-   * Also visit https://drupal.slack.com, and join #contribute to chat.
+* Chat: https://drupal.org/chat
+   * Signup for Drupal Slack, use IRC or join https://drupalchat.eu.
 * IDE: http://ide.drupal.docker.internal:8000
    * Log into the cloud9 IDE with "drupal" as the user name and password.
 * Mail: http://mail.drupal.docker.internal:8000
