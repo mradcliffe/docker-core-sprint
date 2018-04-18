@@ -8,6 +8,9 @@ mv .git/modules/drupal drupal_tmp/.git
 rmdir drupal
 mv drupal_tmp drupal
 
+# Make sure ownership is group-owned because docker volume ownership is a mess
+# on Windows, MacOS and Linux.
+chmod ug+w -R drupal
 cd drupal
 
 # Change the working tree of the git repository.

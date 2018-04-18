@@ -5,13 +5,12 @@ This Software is distributed in a compressed archive with the following third-pa
 
     wodby/adminer - (c) Copyright 2017 Wodby.
     wodby/mariadb - (c) Copyright 2017 Wodby.
+    wodby/php - (c) Copyright 2017 Wodby
     wodby/php-apache - (c) Copyright 2017 Wodby.
     briangilbert/cloud9-alpine - (c) Copyright 2018 Brian Gilbert and respective authors.
       A derivative work of hoadx/cloud9-alpine - (c) Copyright 2017 HoaDX.
     mailhog/mailhog - (c) Copyright 2014 - 2017 Ian Kent (http://iankent.uk)
     traefik - (c) Copyright 2016 - 2018 Containous SAS
-    mradcliffe2/docker-drupal-php - (c) Copyright 2017 Matthew Radcliffe
-      A derivative work of wodby/drupal-php - (c) Copyright 2017 Wodby
 
   Drupal™ is included in the distributable release as a software artifact and git submodule, and is distributed under the GPL license:
 

@@ -46,7 +46,7 @@ before_deploy:
 
   # Saves images to tarball inside release directory.
   - cd "/tmp/${RELEASE_DIR}"
-  - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 mradcliffe2/docker-drupal-php:core-0.4 traefik:1.6.0-rc4-alpine"
+  - IMAGES="wodby/adminer:4.3-1.1.0 wodby/drupal-apache:2.4-1.0.2 briangilbert/cloud9-alpine:20180318 mailhog/mailhog:v1.0.0 wodby/mariadb:10.2-3.0.2 wodby/php:7.1-4.2.5 traefik:1.6.0-rc4-alpine"
   - docker image save ${IMAGES} -o "/tmp/${RELEASE_DIR}/images.tar"
   - ${TRAVIS_BUILD_DIR}/scripts/travis_wait -l 1200 "xz --verbose /tmp/${RELEASE_DIR}/images.tar"
 
@@ -62,6 +62,8 @@ before_deploy:
   - zip -q -r "${RELEASE_TOOLBOX}" "${RELEASE_DIR}"
   - rm -rf "${RELEASE_DIR}/Windows"
   - mv "${DL_DIR}/Linux" "${RELEASE_DIR}/"
+  - mv "${RELEASE_DIR}/Linux/Makefile" "${RELEASE_DIR}/"
+  - mv "${RELEASE_DIR}/Linux/requirements.txt" "${RELEASE_DIR}/"
   - zip -q -r "${RELEASE_LINUX}" "${RELEASE_DIR}"
 
 deploy:

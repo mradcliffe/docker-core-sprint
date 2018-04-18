@@ -40,9 +40,8 @@ Continue by reading the INSTALL.md file inside the directory corresponding to yo
 
 * Drupal Core development site: http://drupal.docker.internal:8000
    * Install Drupal with the database host "mariadb", and the username, password and database name as "drupal8".
-* Chat: http://irc.drupal.docker.internal:8000
-   * Log into chat with fellow contributors.
-   * Also visit https://drupal.slack.com, and join #contribute to chat.
+* Chat: https://drupal.org/chat
+   * Signup for Drupal Slack, use IRC or join https://drupalchat.eu.
 * IDE: http://ide.drupal.docker.internal:8000
    * Log into the cloud9 IDE with "drupal" as the user name and password.
 * Mail: http://mail.drupal.docker.internal:8000

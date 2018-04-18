@@ -38,7 +38,7 @@ services:
       MYSQL_PASSWORD: drupal8
 
   php:
-    image: mradcliffe2/docker-drupal-php:core-0.4
+    image: wodby/php:7.1-4.2.5
     environment:
       APP_ROOT: '/var/www/html'
       PHP_FPM_CLEAR_ENV: "no"
@@ -51,8 +51,7 @@ services:
       PHP_XDEBUG_REMOTE_HANDLER: 'dbgp'
     volumes:
       - files:/var/www/html/sites/default/files
-      - ./drupal:/usr/src/drupal
-      - web:/var/www/html
+      - ./drupal:/var/www/html
 
   apache:
     image: wodby/drupal-apache:2.4-1.0.2
@@ -64,7 +63,7 @@ services:
       APACHE_SERVER_ROOT: /var/www/html
     volumes:
       - files:/var/www/html/sites/default/files
-      - web:/var/www/html
+      - ./drupal:/var/www/html
     labels:
       - 'traefik.backend=apache'
       - 'traefik.port=80'
@@ -89,5 +88,4 @@ services:
 
 volumes:
   files:
-  web:
 

@@ -28,6 +28,8 @@ curl -#SL -o ${DL_DIR}/Windows/PortableGit-2.16.2-64-bit.7z.exe ${GIT_WIN} || ex
 
 # Download static docker for Linux.
 curl -#SL -o ${DL_DIR}/Linux/docker.tgz ${DOCKER_LINUX} || exit 1
+mv "${RELEASE_DIR}/requirements.txt" "${DL_DIR}/Linux/"
+mv "${RELEASE_DIR}/Makefile" "${DL_DIR}/Linux/"
 
 # Write out some instructions for Linux users.
 cd ${DL_DIR}/Linux
