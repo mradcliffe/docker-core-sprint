@@ -1,12 +1,15 @@
 #!/bin/sh
 
+# Fix ownership and permissions because docker.
+sudo chown -R travis:travis drupal
+
 # Remove the git submodule.
-# mv drupal drupal_tmp
+mv drupal drupal_tmp
 git submodule deinit drupal
-rm drupal/.git
-mv .git/modules/drupal drupal/.git
-# rmdir drupal
-# mv drupal_tmp drupal
+rm drupali_tmp/.git
+mv .git/modules/drupal drupal_tmp/.git
+rmdir drupal
+mv drupal_tmp drupal
 
 # Make sure .git is a directory or fail the build.
 if [ ! -d drupal/.git ]; then
@@ -29,6 +32,6 @@ git checkout 8.6.x
 
 # Install composer libraries.
 composer install --no-interaction --dev --no-suggest
- 
+
 cd ..
 
