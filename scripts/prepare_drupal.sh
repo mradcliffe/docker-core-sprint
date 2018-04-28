@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # Remove the git submodule.
-mv drupal drupal_tmp
+# mv drupal drupal_tmp
 git submodule deinit drupal
-rm drupal_tmp/.git
-mv .git/modules/drupal drupal_tmp/.git
-rmdir drupal
-mv drupal_tmp drupal
+rm drupal/.git
+mv .git/modules/drupal drupal/.git
+# rmdir drupal
+# mv drupal_tmp drupal
 
 # Make sure .git is a directory or fail the build.
 if [ ! -d drupal/.git ]; then
