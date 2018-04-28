@@ -6,7 +6,7 @@ sudo chown -R travis:travis drupal
 # Remove the git submodule.
 mv drupal drupal_tmp
 git submodule deinit drupal
-rm drupali_tmp/.git
+rm drupal_tmp/.git
 mv .git/modules/drupal drupal_tmp/.git
 rmdir drupal
 mv drupal_tmp drupal
